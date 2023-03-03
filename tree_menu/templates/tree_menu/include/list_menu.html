@@ -1,0 +1,13 @@
+<ul>
+{% for item in menu_items %}
+    {% if selected == item.item.slug %}
+        <li><a href="{{ item.item.get_absolute_url }}" style="color: red">{{ item.item.name }}</a>
+    {% else %}
+        <li><a href="{{ item.item.get_absolute_url }}">{{ item.item.name }}</a>
+    {% endif %}
+    {% if item.children %}
+        {% include "tree_menu/include/list_menu.html" with menu_items=item.children %}
+    {% endif %}
+    </li>
+{% endfor %}
+</ul>
